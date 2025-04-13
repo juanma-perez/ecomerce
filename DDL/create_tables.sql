@@ -17,7 +17,7 @@ CREATE TABLE `mercadolibre-456620.challenge.customer` (
     customer_id INT64 OPTIONS(description="Identificador único del usuario"),
     PRIMARY KEY (customer_id) NOT ENFORCED,
     email STRING OPTIONS(description="Email del usuario"),
-    first_name STRING OPTIONS(description="Nombre del usuario"),
+    first_name STRING OPTIONS(description="Nombres del usuario"),
     last_name STRING OPTIONS(description="Apellido del usuario"),
     gender STRING OPTIONS(description="Género (M, F, Otro)"),
     birthdate DATE OPTIONS(description="Fecha de nacimiento"),
