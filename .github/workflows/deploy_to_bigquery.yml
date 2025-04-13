@@ -1,0 +1,26 @@
+name: Deploy SQL to BigQuery on Push
+
+on:
+  push:
+    branches:
+      - dev 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: mercadolibre-456701
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Run SQL in BigQuery
+        run: |
+          bq query \
+            --use_legacy_sql=false \
+            --project_id=mercadolibre-456701 \
+            < ddl/create_tables.sql
