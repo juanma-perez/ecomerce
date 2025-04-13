@@ -1,9 +1,10 @@
-name: Deploy SQL to BigQuery on Push
+name: Deploy DDL to BigQuery on Push
 
 on:
   push:
     branches:
-      - dev 
+      - dev  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,12 +16,18 @@ jobs:
       - name: Set up Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: mercadolibre-456701
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          project_id: mercadolibre-456620
+          export_default_credentials: true 
+
+      - name: Authenticate manually 
+        run: |
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > key.json
+          gcloud auth activate-service-account --key-file=key.json
+          gcloud config set project mercadolibre-456620
 
       - name: Run SQL in BigQuery
         run: |
           bq query \
             --use_legacy_sql=false \
-            --project_id=mercadolibre-456701 \
+            --project_id=mercadolibre-456620 \
             < DDL/create_tables.sql
