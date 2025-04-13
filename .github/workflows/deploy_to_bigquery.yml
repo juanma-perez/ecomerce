@@ -16,18 +16,18 @@ jobs:
       - name: Set up Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: mercadolibre-456620
+          project_id: mercadolibre-456701
           export_default_credentials: true 
 
       - name: Authenticate manually 
         run: |
           echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > key.json
           gcloud auth activate-service-account --key-file=key.json
-          gcloud config set project mercadolibre-456620
+          gcloud config set project mercadolibre-456701
 
       - name: Run SQL in BigQuery
         run: |
           bq query \
             --use_legacy_sql=false \
-            --project_id=mercadolibre-456620 \
+            --project_id=mercadolibre-456701 \
             < DDL/create_tables.sql

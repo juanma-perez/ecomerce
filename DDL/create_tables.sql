@@ -1,7 +1,7 @@
 -- ##################################################
 -- Script: create_tables.sql (Mejorado)
 -- Descripción:
--- Proyecto: mercadolibre-456620
+-- Proyecto: mercadolibre-456701
 -- Dataset: challenge
 -- Versión: 1.1
 -- Autor: Manuel Pérez
@@ -12,8 +12,8 @@
 -- Tabla: customer
 -- Usuarios registrados en el sitio
 -- ===============================
-DROP TABLE IF EXISTS `mercadolibre-456620.challenge.customer`;
-CREATE TABLE `mercadolibre-456620.challenge.customer` (
+DROP TABLE IF EXISTS `mercadolibre-456701.challenge.customer`;
+CREATE TABLE `mercadolibre-456701.challenge.customer` (
     customer_id INT64 OPTIONS(description="Identificador único del usuario"),
     PRIMARY KEY (customer_id) NOT ENFORCED,
     email STRING OPTIONS(description="Email del usuario"),
@@ -32,8 +32,8 @@ OPTIONS (
 -- Tabla: category
 -- Estructura jerárquica de categorías
 -- ===============================
-DROP TABLE IF EXISTS `mercadolibre-456620.challenge.category`;
-CREATE TABLE `mercadolibre-456620.challenge.category` (
+DROP TABLE IF EXISTS `mercadolibre-456701.challenge.category`;
+CREATE TABLE `mercadolibre-456701.challenge.category` (
     category_id INT64 OPTIONS(description="Identificador único de la categoría"),
     PRIMARY KEY (category_id) NOT ENFORCED,
     category_name STRING OPTIONS(description="Nombre corto de la categoría (ej: 'Smartphones')"),
@@ -50,8 +50,8 @@ OPTIONS (
 -- Tabla: item
 -- Publicaciones de productos
 -- ===============================
-DROP TABLE IF EXISTS `mercadolibre-456620.challenge.item`;
-CREATE TABLE `mercadolibre-456620.challenge.item` (
+DROP TABLE IF EXISTS `mercadolibre-456701.challenge.item`;
+CREATE TABLE `mercadolibre-456701.challenge.item` (
     item_id INT64 OPTIONS(description="Identificador único del producto"),
     PRIMARY KEY (item_id) NOT ENFORCED,
     title STRING OPTIONS(description="Título descriptivo del producto"),
@@ -66,20 +66,20 @@ OPTIONS (
     description = "Tabla que contiene todos los productos publicados en la plataforma, asociados a su vendedor."
 );
 
-ALTER TABLE `mercadolibre-456620.challenge.item`
+ALTER TABLE `mercadolibre-456701.challenge.item`
 ADD CONSTRAINT fk_item_category FOREIGN KEY (category_id)
-REFERENCES `mercadolibre-456620.challenge.category`(category_id) NOT ENFORCED;
+REFERENCES `mercadolibre-456701.challenge.category`(category_id) NOT ENFORCED;
 
-ALTER TABLE `mercadolibre-456620.challenge.item`
+ALTER TABLE `mercadolibre-456701.challenge.item`
 ADD CONSTRAINT fk_item_customer_seller FOREIGN KEY (seller_id)
-REFERENCES `mercadolibre-456620.challenge.customer`(customer_id) NOT ENFORCED;
+REFERENCES `mercadolibre-456701.challenge.customer`(customer_id) NOT ENFORCED;
 
 -- ===============================
 -- Tabla: order
 -- Registro de compras realizadas
 -- ===============================
-DROP TABLE IF EXISTS `mercadolibre-456620.challenge.order`;
-CREATE TABLE `mercadolibre-456620.challenge.order` (
+DROP TABLE IF EXISTS `mercadolibre-456701.challenge.order`;
+CREATE TABLE `mercadolibre-456701.challenge.order` (
     order_id INT64 OPTIONS(description="Identificador único de la orden de compra"),
     PRIMARY KEY (order_id) NOT ENFORCED,
     customer_id INT64 OPTIONS(description="ID del cliente que realizó la compra"),
@@ -92,10 +92,10 @@ OPTIONS (
     description = "Registro detallado de las órdenes de compra generadas en el sitio."
 );
 
-ALTER TABLE `mercadolibre-456620.challenge.order`
+ALTER TABLE `mercadolibre-456701.challenge.order`
 ADD CONSTRAINT fk_order_customer FOREIGN KEY (customer_id)
-REFERENCES `mercadolibre-456620.challenge.customer`(customer_id) NOT ENFORCED;
+REFERENCES `mercadolibre-456701.challenge.customer`(customer_id) NOT ENFORCED;
 
-ALTER TABLE `mercadolibre-456620.challenge.order`
+ALTER TABLE `mercadolibre-456701.challenge.order`
 ADD CONSTRAINT fk_order_item FOREIGN KEY (item_id)
-REFERENCES `mercadolibre-456620.challenge.item`(item_id) NOT ENFORCED;
+REFERENCES `mercadolibre-456701.challenge.item`(item_id) NOT ENFORCED;
