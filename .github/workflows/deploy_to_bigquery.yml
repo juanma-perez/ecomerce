@@ -23,4 +23,4 @@ jobs:
           bq query \
             --use_legacy_sql=false \
             --project_id=mercadolibre-456701 \
-            < ddl/create_tables.sql
+            < DDL/create_tables.sql
