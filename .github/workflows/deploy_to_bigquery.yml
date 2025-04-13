@@ -18,11 +18,6 @@ jobs:
           project_id: mercadolibre-456701
           service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
-      - name: Activate service account manually (fix for bq)
-        run: |
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > key.json
-          gcloud auth activate-service-account --key-file=key.json
-
       - name: Run SQL in BigQuery
         run: |
           bq query \
