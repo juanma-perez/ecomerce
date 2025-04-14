@@ -68,3 +68,8 @@ Este repositorio contiene scripts de creación, carga y análisis de datos sobre
 /.github/workflows/
   deploy_to_bigquery.yml
 ```
+## 🗺️ Diagrama Entidad-Relación
+
+El siguiente diagrama muestra la estructura del modelo relacional con las entidades principales del challenge:
+
+![Diagrama ER](./DER.svg)
