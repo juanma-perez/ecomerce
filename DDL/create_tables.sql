@@ -99,3 +99,19 @@ REFERENCES `mercadolibre-456701.challenge.customer`(customer_id) NOT ENFORCED;
 ALTER TABLE `mercadolibre-456701.challenge.order`
 ADD CONSTRAINT fk_order_item FOREIGN KEY (item_id)
 REFERENCES `mercadolibre-456701.challenge.item`(item_id) NOT ENFORCED;
+
+-- ===============================
+-- Tabla: order
+-- Registro de compras realizadas
+-- ===============================
+DROP TABLE IF EXISTS `mercadolibre-456701.challenge.item_snapshot`;
+CREATE TABLE  `mercadolibre-456701.challenge.item_snapshot` (
+  snapshot_date DATE,
+  item_id INT64,
+  price NUMERIC,
+  status STRING
+)
+PARTITION BY snapshot_date
+OPTIONS (
+  description = "Precio y estado de cada ítem al cierre de cada día. Puede reprocesarse sin duplicar datos."
+);
