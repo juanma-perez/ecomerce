@@ -33,11 +33,11 @@ jobs:
             < DDL/create_tables.sql
 
       - name: Run DML scripts in BigQuery
-              run: |
-                for file in DML/*.sql; do
-                  echo "Executing $file"
-                  bq query \
-                    --use_legacy_sql=false \
-                    --project_id=mercadolibre-456701 \
-                    < "$file"
-                done
+        run: |
+            for file in DML/*.sql; do
+              echo "Executing $file"
+              bq query \
+              --use_legacy_sql=false \
+              --project_id=mercadolibre-456701 \
+              < "$file"
+            done
