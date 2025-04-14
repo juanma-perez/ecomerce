@@ -3,7 +3,7 @@
 -- Script: insert_order.sql
 -- Tabla: order
 -- ==============================================
-INSERT INTO `mercadolibre-456620.challenge.order` (
+INSERT INTO `mercadolibre-456701.challenge.order` (
   order_id, customer_id, item_id, quantity, order_date, total_price
 ) VALUES
   (3001, 11, 2001, 1, DATE '2020-01-10', 800000),

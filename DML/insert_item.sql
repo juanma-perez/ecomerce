@@ -3,7 +3,7 @@
 -- Script: insert_item.sql
 -- Tabla: item
 -- ==============================================
-INSERT INTO `mercadolibre-456620.challenge.item` (
+INSERT INTO `mercadolibre-456701.challenge.item` (
   item_id, title, price, status, category_id, seller_id, created_at, updated_at
 ) VALUES
   (2001, 'iPhone X 128GB', 800000, 'activo', 101, 10, DATE '2019-12-15', DATE '2020-01-01'),
