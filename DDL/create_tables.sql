@@ -102,16 +102,16 @@ REFERENCES `mercadolibre-456701.challenge.item`(item_id) NOT ENFORCED;
 
 -- ===============================
 -- Tabla: order
--- Registro de compras realizadas
+-- Estado final de los items al final del día 
 -- ===============================
-DROP TABLE IF EXISTS `mercadolibre-456701.challenge.item_snapshot`;
+DROP TABLE `mercadolibre-456701.challenge.item_snapshot` ;
 CREATE TABLE  `mercadolibre-456701.challenge.item_snapshot` (
-  snapshot_date DATE,
-  item_id INT64,
-  price NUMERIC,
-  status STRING
+  snapshot_date DATE OPTIONS(description="Fecha del snapshot (corte del día)"),
+  item_id INT64 OPTIONS(description="Identificador único del producto"),
+  price NUMERIC OPTIONS(description="Precio del producto al momento del snapshot"),
+  status STRING OPTIONS(description="Estado del producto al momento del snapshot (activo, pausado, eliminado, etc.)")
 )
 PARTITION BY snapshot_date
 OPTIONS (
-  description = "Precio y estado de cada ítem al cierre de cada día. Puede reprocesarse sin duplicar datos."
+  description = "Tabla que almacena un snapshot diario del precio y estado actual de los productos. Reprocesable sin duplicados."
 );
